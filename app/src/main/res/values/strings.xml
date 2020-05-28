@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Project</string>
+    <!--    String for on Boarding Screen-->
+    <string name="first_slide_title">Search Your Location</string>
+    <string name="second_slide_title">Make a Phone</string>
+    <string name="third_slide_title">Add Missing Place</string>
+    <string name="four_slide_title">Sit Back and Enjoy</string>
+
+    <string name="first_slide_desc">Search Your Location</string>
+    <string name="second_slide_desc">Make a Phone</string>
+    <string name="third_slide_desc">Add Missing Place</string>
+    <string name="four_slide_desc">Sit Back and Enjoy</string>
+
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="get_started_btn">Lets Get Started</string>
+    <string name="get_started">Get Started</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="facebook_app_id">684661492320795</string>
+    <string name="fb_login_protocol_scheme">fb684661492320795</string>
+
+</resources>

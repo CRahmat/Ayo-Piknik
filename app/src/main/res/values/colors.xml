@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#BABABA</color>
+    <color name="colorAccent">#656565</color>
+
+    <!-- warna  button -->
+    <color name="gradient_start_color">#584CFF</color>
+    <color name="gradient_end_color">#18a3fe</color>
+
+    <!-- warna  tab dan screen text -->
+    <color name="tab_indicator_gray">#c0c0c0</color>
+    <color name="intro_title_color">#000000</color>
+    <color name="intro_description_color">#656565</color>
+    <color name="failed">#FA3535</color>
+
+    <color name="wave_start_color">#33CC33</color>
+    <color name="wave_close_color">#C9FFC9</color>
+
+    <color name="bgColor1">#E6E6FA</color>
+    <color name="bgColor2">#FFF0F5</color>
+    <color name="bgColor3">#ffffff</color>
+    <color name="bgColor4">#FFB6C1</color>
+    <color name="bgColor5">#ADD8E6</color>
+</resources>

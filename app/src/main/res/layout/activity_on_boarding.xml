@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".onboarding.OnBoarding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/on_boarding_bttn_next"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/custom_button_next"
+            android:drawableRight="@drawable/ic_right"
+            android:elevation="10dp"
+            android:fontFamily="@font/agencyb"
+            android:paddingRight="5dp"
+            android:text="@string/next_btn"
+            android:textSize="16dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/onBoardingViewPager"
+            app:layout_constraintEnd_toEndOf="@id/onBoardingViewPager"
+            tools:visibility="invisible" />
+
+        <Button
+            android:id="@+id/on_boarding_bttn_get_started"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/custom_bttn_get_started"
+            android:fontFamily="@font/agencyb"
+            android:paddingRight="10dp"
+            android:text="@string/get_started"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/onBoardingViewPager"
+            app:layout_constraintEnd_toEndOf="@id/onBoardingViewPager"
+            app:layout_constraintStart_toStartOf="@id/onBoardingViewPager"
+            tools:visibility="invisible" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/onBoardingViewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="35dp"
+            android:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@+id/on_boarding_wave"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+        </androidx.viewpager.widget.ViewPager>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/on_boarding_tab_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp"
+            android:layout_marginBottom="10dp"
+            android:padding="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/on_boarding_bttn_get_started"
+            app:layout_constraintStart_toStartOf="@+id/on_boarding_bttn_get_started"
+            app:tabBackground="@drawable/on_boarding_indicator"
+            app:tabIndicatorHeight="0dp">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <Button
+            android:id="@+id/on_boarding_bttn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:backgroundTint="#74C2FF"
+            android:fontFamily="@font/agencyb"
+            android:gravity="center"
+            android:text="@string/skip_btn"
+            android:textSize="16dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginRight="20dp"
+            tools:visibility="invisible" />
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/on_boarding_wave"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:rotation="180"
+            android:scaleX="-1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:mwhColorAlpha="0.1"
+            app:mwhWaveHeight="30dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "550894867946",
+    "firebase_url": "https://ayopiknik-cf01f.firebaseio.com",
+    "project_id": "ayopiknik-cf01f",
+    "storage_bucket": "ayopiknik-cf01f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550894867946:android:703c4866de9968a722ce93",
+        "android_client_info": {
+          "package_name": "com.github.myproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550894867946-5dsjdp639l98lpnvgb7aidgdcro2b6du.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.github.myproject",
+            "certificate_hash": "a1d96a9e53ba13b3f3ea736cf80d343f8bdcbb6d"
+          }
+        },
+        {
+          "client_id": "550894867946-jcv49ff5gop7okrn2a5iqj23o7fe4hji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOrJAUu-tAoJYyYgBmDOvlthEz17D9LKw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550894867946-jcv49ff5gop7okrn2a5iqj23o7fe4hji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
