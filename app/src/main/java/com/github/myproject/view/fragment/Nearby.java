@@ -1,4 +1,4 @@
-package com.github.myproject.view.fragment;
+package com.github.myproject;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,11 +32,16 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +54,8 @@ public class Nearby extends Fragment implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener
+{
     private static final int Request_User_Location_Code = 99;
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
@@ -56,6 +64,11 @@ public class Nearby extends Fragment implements
     private Marker currentUserLocationMarker;
     private double latitide, longitude;
     private int ProximityRadius = 10000;
+    private Button searchAddress;
+    private TextView vacationNearby;
+    private TextView hotelNearby;
+    private TextView restaurantNearby;
+    private MapView mapView;
 
     public Nearby() {
         // Required empty public constructor
@@ -70,27 +83,28 @@ public class Nearby extends Fragment implements
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkUserLocationPermission();
         }
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-    }
-
-    public void onClick(View view) {
-        String tourist_attraction = "tourist_attraction", lodging = "lodging", restaurant = "restaurant";
-        Object transferData[] = new Object[2];
-        GetNearPlaces getNearbyPlaces = new GetNearPlaces();
-
-
-        switch (view.getId()) {
-            case R.id.search_address:
+         //Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        mapView = view.findViewById(R.id.map);
+        searchAddress = view.findViewById(R.id.search_address);
+        vacationNearby = view.findViewById(R.id.vacation_nearby);
+        hotelNearby = view.findViewById(R.id.hotel_nearby);
+        restaurantNearby = view.findViewById(R.id.restaurant_nearby);
+        mapView.onCreate(null);
+        mapView.onResume();
+        mapView.getMapAsync(this);
+        final String tourist_attraction = "tourist_attraction", lodging = "lodging", restaurant = "restaurant";
+        final Object transferData[] = new Object[2];
+        final GetNearPlaces getNearbyPlaces = new GetNearPlaces();
+        searchAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 EditText addressField = (EditText) view.findViewById(R.id.location_search);
                 String address = addressField.getText().toString();
 
@@ -124,44 +138,50 @@ public class Nearby extends Fragment implements
                 } else {
                     Toast.makeText(getContext(), "Tulis Lokasi yang dicari ...", Toast.LENGTH_SHORT).show();
                 }
-                break;
+                vacationNearby.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMap.clear();
+                        String url = getUrl(latitide, longitude, tourist_attraction);
+                        transferData[0] = mMap;
+                        transferData[1] = url;
 
+                        getNearbyPlaces.execute(transferData);
+                        Toast.makeText(getContext(), "Mencari Wisata Terdekat...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Menampilkan Wisata Terdekat...", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-            case R.id.vacation_nearby:
-                mMap.clear();
-                String url = getUrl(latitide, longitude, tourist_attraction);
-                transferData[0] = mMap;
-                transferData[1] = url;
+                hotelNearby.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMap.clear();
+                        String url = getUrl(latitide, longitude, lodging);
+                        transferData[0] = mMap;
+                        transferData[1] = url;
 
-                getNearbyPlaces.execute(transferData);
-                Toast.makeText(getContext(), "Mencari Wisata Terdekat...", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "Menampilkan Wisata Terdekat...", Toast.LENGTH_SHORT).show();
-                break;
+                        getNearbyPlaces.execute(transferData);
+                        Toast.makeText(getContext(), "Mencari Hotel Terdekat...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Menampilkan Hotel Terdekat...", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
+                restaurantNearby.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mMap.clear();
+                        String url = getUrl(latitide, longitude, restaurant);
+                        transferData[0] = mMap;
+                        transferData[1] = url;
 
-            case R.id.hotel_nearby:
-                mMap.clear();
-                url = getUrl(latitide, longitude, lodging);
-                transferData[0] = mMap;
-                transferData[1] = url;
+                        getNearbyPlaces.execute(transferData);
+                        Toast.makeText(getContext(), "Mencari Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Menampilkan Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
 
-                getNearbyPlaces.execute(transferData);
-                Toast.makeText(getContext(), "Mencari Hotel Terdekat...", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "Menampilkan Hotel Terdekat...", Toast.LENGTH_SHORT).show();
-                break;
-
-
-            case R.id.restaurant_nearby:
-                mMap.clear();
-                url = getUrl(latitide, longitude, restaurant);
-                transferData[0] = mMap;
-                transferData[1] = url;
-
-                getNearbyPlaces.execute(transferData);
-                Toast.makeText(getContext(), "Mencari Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), "Menampilkan Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
-                break;
-        }
     }
 
     private String getUrl(double latitide, double longitude, String nearbyPlace) {
@@ -179,6 +199,7 @@ public class Nearby extends Fragment implements
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        MapsInitializer.initialize(getContext());
         mMap = googleMap;
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
