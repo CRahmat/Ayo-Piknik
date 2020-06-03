@@ -5,652 +5,956 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED"
-    tools:context=".view.fragment.HomeFragment">
-    <!--    CardView For Header-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_logo_application"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent">
-        <!--        Logo Application-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/ic_search_show"
-                android:layout_width="90dp"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:scaleType="centerCrop"
-                app:lottie_fileName="search_show.json"
-                app:lottie_loop="false" />
-
-            <ImageView
-                android:id="@+id/logo_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="40dp"
-                android:src="@drawable/logo_ayo_piknik" />
-        </RelativeLayout>
-        <!--        Search Nav Bar-->
-        <LinearLayout
-            android:id="@+id/search_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="#1AE1E1E1"
-            android:gravity="center_vertical"
-            android:textColorHint="#5C5C5C"
-            android:visibility="invisible">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_weight="10"
-                android:drawableRight="@drawable/ic_search_black"
-                android:fontFamily="@font/gothic"
-                android:hint="Search..."
-                android:textColor="#5C5C5C"
-                android:textColorHint="#979797"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    tools:context=".view.fragment.Home">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        app:layout_constraintTop_toBottomOf="@id/cv_logo_application">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <!--        Logo Application-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:background="#67FFFFFF">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/home_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/morning_view" />
+
+                    <TextView
+                        android:id="@+id/welcome_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/gothic"
+                        android:paddingTop="50dp"
+                        android:text="@string/welcome"
+                        android:textColor="#505050"
+                        android:textSize="24dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/welcome_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/welcome_text"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/gothic"
+                        android:text="@string/welcome_details"
+                        android:textColor="#505050"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/categories_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/welcome_detail"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/custom_categories_corners"
+                        android:elevation="20dp"
+                        android:orientation="vertical">
+                        <!--            Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_restaurant"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/restaurant" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_hotel"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/hotel" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_deestination"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/ic_attraction_categories" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_mosque"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/ic_mosque_categories" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--            Detail Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/restaurant"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/hotel"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/destination"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/mosque"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--            Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_church"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/church" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_vihara"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/temple" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_bank"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/bank" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_atm"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/atm" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--            Detail Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/church"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/vihara"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/bank"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/atm"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--            Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_hospital"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/hospital" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_supermarket"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/supermarket" />
+
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_airport"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/airplane" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/home_categories_station"
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/custom_categories_item"
+                                    app:cardCornerRadius="10dp">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:padding="10dp"
+                                        android:src="@drawable/train" />
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!--            Detail Categories-->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="20dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/hospital"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/supermarket"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/bandara"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="1">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/gothic_bold"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/stasiun"
+                                    android:textAlignment="center"
+                                    android:textSize="10dp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <ImageView
-                    android:id="@+id/home_image"
+                    android:id="@+id/logo_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/morning_view" />
-
-                <TextView
-                    android:id="@+id/welcome_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/gothic"
-                    android:text="Hello, Selamat Datang"
-                    android:textColor="#505050"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/welcome_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/welcome_text"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/gothic"
-                    android:text="Ayo Piknik Selalu Setia Menemani Perjalanan Anda"
-                    android:textColor="#505050"
-                    android:textStyle="bold" />
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="#FFFFFF"
+                    android:padding="8dp"
+                    android:src="@drawable/logo_ayo_piknik" />
 
                 <LinearLayout
-                    android:id="@+id/categories_layout"
+                    android:id="@+id/search_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/welcome_detail"
-                    android:layout_margin="20dp"
-                    android:background="@drawable/custom_categories_corners"
-                    android:orientation="vertical">
-                    <!--            Categories-->
-                    <LinearLayout
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="#FFFFFF"
+                    android:gravity="center_vertical"
+                    android:textColorHint="#5C5C5C"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewLeft"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_restaurant_categories" />
-
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewRight"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_hotel_categories" />
-
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewBottom"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_attraction_categories" />
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewBottom2"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_mosque_categories" />
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <!--            Detail Categories-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Restaurant"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Hotel"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Attraction"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Masjid"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <!--            Categories-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewLeft2"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_comming_soon" />
-
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewRight2"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_comming_soon" />
-
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewBottom222"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_comming_soon" />
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/fragmentHome_cardViewBottom22"
-                                android:layout_width="70dp"
-                                android:layout_height="70dp"
-                                android:layout_margin="5dp"
-                                android:background="@drawable/custom_categories_item"
-                                app:cardCornerRadius="10dp">
-
-                                <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:padding="10dp"
-                                    android:src="@drawable/ic_comming_soon" />
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <!--            Detail Categories-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="20dp"
-                        android:orientation="horizontal"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Comming Soon"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Comming Soon"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Comming Soon"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:fontFamily="@font/gothic_bold"
-                                android:gravity="center_horizontal"
-                                android:text="Comming Soon"
-                                android:textAlignment="center"
-                                android:textSize="10dp" />
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="10"
+                        android:drawableRight="@drawable/ic_search_black"
+                        android:fontFamily="@font/gothic"
+                        android:hint="@string/search"
+                        android:textColor="#5C5C5C"
+                        android:textColorHint="#979797"
+                        android:textSize="12dp" />
                 </LinearLayout>
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:text="Tempat Wisata Terdekat"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/show_all_attraction"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/ic_search_show"
+                    android:layout_width="90dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/gothic"
-                    android:text="Lihat Semua"
-                    android:textSize="10dp" />
+                    android:scaleType="centerCrop"
+                    app:lottie_fileName="search_show.json"
+                    app:lottie_loop="false" />
             </RelativeLayout>
 
-            <TextView
+            <RelativeLayout
+                android:id="@+id/attraction_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:text="Temukan Tempat Wisata Favorit Kamu Sekarang" />
+                android:background="#F8F8F8">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
-                <!--            <TextView-->
-                <!--                android:id="@+id/destination_title"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="match_parent"-->
-                <!--                android:text="Temukan\nTempat\nFavoritmu"-->
-                <!--                android:fontFamily="@font/gothic_bold"-->
-                <!--                android:padding="10dp"-->
-                <!--                android:gravity="center_vertical"-->
-                <!--                android:background="#FFFFFF"-->
-                <!--                />-->
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_content_tourist_attraction"
+                <RelativeLayout
+                    android:id="@+id/attraction_title"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="2dp"
-                    android:orientation="horizontal"
-                    android:scrollbarFadeDuration="500" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/attraction_home"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/show_all_attraction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/gothic"
+                        android:text="@string/view_all"
+                        android:textSize="10dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/attraction_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/attraction_title"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/attraction_home_detail" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:layout_below="@+id/attraction_details"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp">
+                    <!--                            <TextView-->
+                    <!--                                android:id="@+id/destination_title"-->
+                    <!--                                android:layout_width="wrap_content"-->
+                    <!--                                android:layout_height="match_parent"-->
+                    <!--                                android:text="Temukan\nTempat\nFavoritmu"-->
+                    <!--                                android:fontFamily="@font/gothic_bold"-->
+                    <!--                                android:padding="10dp"-->
+                    <!--                                android:gravity="center_vertical"-->
+                    <!--                                android:background="#FFFFFF"-->
+                    <!--                                />-->
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_content_tourist_attraction"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:scrollIndicators="none"
+                        android:scrollbarFadeDuration="700"
+                        tools:layout_editor_absoluteX="1dp"
+                        tools:layout_editor_absoluteY="8dp" />
+
+                    <ProgressBar
+                        android:id="@+id/home_destination_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="#8BC34A"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home_destination_progress_bar_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Loading..."
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_destination_progress_bar" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/home_hotels_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED">
+
+                <RelativeLayout
+                    android:id="@+id/home_hotel_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/hotel"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/show_all_hotels"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/gothic"
+                        android:text="@string/view_all"
+                        android:textSize="10dp" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/home_hotel_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/home_hotel_title"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/hotels_home_details" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_below="@id/home_hotel_details"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_content_hotels"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollIndicators="none"
+                        android:scrollbarFadeDuration="700"
+                        android:scrollbars="horizontal"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/home_hotels_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="#8BC34A"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home_hotels_progress_bar_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Loading..."
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_hotels_progress_bar" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
+                android:background="#F8F8F8">
+
+                <RelativeLayout
+                    android:id="@+id/home_restaurant_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:id="@+id/restaurant_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:text="@string/restaurant"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/show_all_restaurant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/gothic"
+                        android:text="@string/view_all"
+                        android:textSize="10dp" />
+                </RelativeLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/home_restaurant_details"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:text="Hotel"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:layout_below="@id/home_restaurant_title"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@string/restaurant_home_details" />
 
-                <TextView
-                    android:id="@+id/show_all_hotels"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/gothic"
-                    android:text="Lihat Semua"
-                    android:textSize="10dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"
+                    android:layout_below="@id/home_restaurant_details"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="40dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_content_restaurant"
+                        android:layout_width="match_parent"
+                        android:layout_height="210dp"
+                        android:scrollIndicators="none"
+                        android:scrollbarFadeDuration="700"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                    <ProgressBar
+                        android:id="@+id/home_restaurant_progress_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="#8BC34A"
+                        android:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/home_restaurant_progress_bar_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Loading..."
+                        android:visibility="visible"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/home_restaurant_progress_bar" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:text="Berikut merupakan beberapa rekomendasi hotel buat kamu" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_content_hotels"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:scrollbars="horizontal" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="@font/gothic_bold"
-                    android:text="Restaurant"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/show_all_restaurant"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/gothic"
-                    android:text="Lihat Semua"
-                    android:textSize="10dp" />
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:text="Temukan restaurant favorit kamu dan makanan favorit kamu sekarang" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_content_restaurant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="80dp" />
         </LinearLayout>
     </ScrollView>
+
+    <!--        Search Nav Bar-->
 </androidx.constraintlayout.widget.ConstraintLayout>

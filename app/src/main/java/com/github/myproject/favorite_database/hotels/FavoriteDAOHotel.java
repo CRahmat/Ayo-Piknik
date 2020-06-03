@@ -1,4 +1,4 @@
-package com.github.myproject.favorite_database.restaurant;
+package com.github.myproject.favorite_database.hotels;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -6,19 +6,17 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.github.myproject.favorite_database.FavoriteData;
-
 import java.util.List;
 
 @Dao
 
-public interface FavoriteDAORestaurant {
+public interface FavoriteDAOHotel {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Long insertRepository(FavoriteData favoriteData);
+    Long insertRepository(FavoriteDataHotel favoriteDataHotel);
 
-    @Query("SELECT * FROM favorite_database")
-    List<FavoriteData> getFavorite();
+    @Query("SELECT * FROM favorite_database_hotel")
+    List<FavoriteDataHotel> getFavorite();
 
     @Delete
-    void deleteRepositoryData(FavoriteData favoriteData);
+    void deleteRepositoryData(FavoriteDataHotel favoriteDataHotel);
 }

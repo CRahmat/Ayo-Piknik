@@ -1,4 +1,4 @@
-package com.github.myproject.nearby;
+package com.github.myproject.nearby_adapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;

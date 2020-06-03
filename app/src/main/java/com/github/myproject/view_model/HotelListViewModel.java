@@ -1,4 +1,4 @@
-package com.github.myproject.view.view_model;
+package com.github.myproject.view_model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

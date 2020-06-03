@@ -92,6 +92,7 @@
             android:gravity="center"
             android:text="@string/skip_btn"
             android:textSize="16dp"
+            android:textStyle="bold"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

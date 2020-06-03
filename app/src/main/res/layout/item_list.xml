@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="250dp"
     android:layout_marginTop="15dp"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_list_card_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         app:cardCornerRadius="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +40,6 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:padding="3dp"
-                    android:text="Place Name"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -50,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:padding="2dp"
-                    android:text="Place Address\nPlace Address Detail"
                     android:textSize="10sp"
                     android:textStyle="italic" />
 
@@ -65,7 +63,6 @@
                         android:layout_gravity="center_vertical"
                         android:layout_margin="1dp"
                         android:layout_weight="1"
-                        android:text="Open Status"
                         android:textSize="12sp"
                         android:textStyle="normal" />
 

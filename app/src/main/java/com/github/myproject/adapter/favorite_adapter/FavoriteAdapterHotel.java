@@ -14,67 +14,71 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
-import com.github.myproject.favorite_database.destination.FavoriteContractDestination;
-import com.github.myproject.favorite_database.destination.FavoriteDataDestination;
+import com.github.myproject.favorite_database.hotels.FavoriteContractHotel;
+import com.github.myproject.favorite_database.hotels.FavoriteDataHotel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class FavoriteAdapterDestination extends RecyclerView.Adapter<FavoriteAdapterDestination.ViewHolder> {
+public class FavoriteAdapterHotel extends RecyclerView.Adapter<FavoriteAdapterHotel.ViewHolder> {
     private Context context;
-    private List<FavoriteDataDestination> favoriteDatumDestinations = new ArrayList<>();
-    private FavoriteContractDestination.view repositoryView;
-    private FavoriteDataDestination favoriteDelete;
+    private List<FavoriteDataHotel> favoriteDataHotelList = new ArrayList<>();
+    private FavoriteContractHotel.view repositoryView;
+    private FavoriteDataHotel favoriteDataHotel;
     private CardView favCardView;
 
-    public FavoriteAdapterDestination(Context context, List<FavoriteDataDestination> repositoryResponse, FavoriteContractDestination.view repositoryView) {
+    public FavoriteAdapterHotel(Context context, List<FavoriteDataHotel> repositoryResponse, FavoriteContractHotel.view repositoryView) {
         this.context = context;
-        this.favoriteDatumDestinations = repositoryResponse;
+        this.favoriteDataHotelList = repositoryResponse;
         this.repositoryView = repositoryView;
     }
 
-    public FavoriteAdapterDestination(Context context) {
+    public FavoriteAdapterHotel(Context context) {
         this.context = context;
     }
+
     @NonNull
     @Override
-    public FavoriteAdapterDestination.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavoriteAdapterHotel.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_destination_favorite_design, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FavoriteAdapterDestination.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull FavoriteAdapterHotel.ViewHolder holder, final int position) {
         holder.favCardView.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
-        holder.placeName.setText(favoriteDatumDestinations.get(position).getName());
-            holder.placeAddress.setText(favoriteDatumDestinations.get(position).getVicinity());
-            double rating = favoriteDatumDestinations.get(position).getRating();
-            String castRating = String.valueOf(rating);
-            holder.placeRating.setText("Rating : "+castRating);
-            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+        holder.placeName.setText(favoriteDataHotelList.get(position).getName());
+        holder.placeAddress.setText(favoriteDataHotelList.get(position).getVicinity());
+        String photoReference = favoriteDataHotelList.get(position).getImage();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").centerCrop().placeholder(R.drawable.special_loading).into(holder.placeImage);
+        double rating = favoriteDataHotelList.get(position).getRating();
+        String castRating = String.valueOf(rating);
+        holder.placeRating.setText("Rating : " + castRating);
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                favoriteDelete = favoriteDatumDestinations.get(position);
-                repositoryView.deleteFavoriteData(favoriteDelete);
+                favoriteDataHotel = favoriteDataHotelList.get(position);
+                repositoryView.deleteFavoriteDataHotel(favoriteDataHotel);
             }
         });
-            holder.favCardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    final String url = "https://www.google.com/search?q=".concat(favoriteDatumDestinations.get(position).getName());
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(url));
-                            context.startActivity(intent);
-                }
-            });
+        holder.favCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String url = "https://www.google.com/search?q=".concat(favoriteDataHotelList.get(position).getName());
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return favoriteDatumDestinations.size();
+        return favoriteDataHotelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -83,6 +87,8 @@ public class FavoriteAdapterDestination extends RecyclerView.Adapter<FavoriteAda
         TextView placeRating;
         ImageView deleteButton;
         CardView favCardView;
+        ImageView placeImage;
+
         public ViewHolder(@NonNull View view) {
             super(view);
             placeName = view.findViewById(R.id.fav_place_name);
@@ -90,6 +96,7 @@ public class FavoriteAdapterDestination extends RecyclerView.Adapter<FavoriteAda
             placeRating = view.findViewById(R.id.fav_place_rating);
             deleteButton = view.findViewById(R.id.fav_delete_button);
             favCardView = view.findViewById(R.id.favorite_cv);
+            placeImage = view.findViewById(R.id.fav_image_place);
         }
     }
 }

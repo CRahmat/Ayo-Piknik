@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context=".view.activity.TourismAttractionListActivity">
+    tools:context=".view.activity.categories.TourismAttractionListActivity">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_hotels"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="destination.json"
+        app:lottie_loop="true" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,8 +39,8 @@
                 android:background="@drawable/searchbar_bg"
                 android:drawableLeft="@drawable/ic_search_black"
                 android:drawablePadding="5dp"
-                android:hint="Search..."
-                android:textColor="@color/bgColor3"
+                android:hint="@string/search_hint"
+                android:textColor="#3A3A3A"
                 android:textSize="12dp" />
         </androidx.cardview.widget.CardView>
 
@@ -37,8 +50,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:background="#FAFAFA"
             android:foregroundGravity="center_horizontal" />
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

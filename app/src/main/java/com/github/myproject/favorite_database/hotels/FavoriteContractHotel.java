@@ -1,30 +1,28 @@
-package com.github.myproject.favorite_database.restaurant;
-import android.content.Context;
+package com.github.myproject.favorite_database.hotels;
 
-import com.github.myproject.favorite_database.FavoriteData;
-import com.github.myproject.favorite_database.FavoriteDatabase;
+import android.content.Context;
 
 import java.util.List;
 
-public interface FavoriteContractRestaurant {
+public interface FavoriteContractHotel {
     interface view {
         void successAdd();
 
         void successDelete();
 
-        void getData(List<FavoriteData> listFavoriteDatabase);
+        void getDataHotel(List<FavoriteDataHotel> listFavoriteDataHotels);
 
-        void deleteFavoriteDataRestaurant(FavoriteData favoriteData);
+        void deleteFavoriteDataHotel(FavoriteDataHotel favoriteDataHotel);
 
         void dataAlready();
     }
 
     // interfaace presenter digunakan untuk kodingan database nya
     interface presenter {
-        void insertFavoriteDataRestaurant(String id, String name, String vicinity, Double rating, FavoriteDatabase favoriteDatabase);
+        void insertFavoriteDataHotel(String id, String name, String vicinity, Double rating, String image, FavoriteDatabaseHotel favoriteDatabaseHotel);
 
-        void readFavoriteDataRestaurant(FavoriteDatabase favoriteDatabase, Context context);
+        void readFavoriteDataHotel(FavoriteDatabaseHotel favoriteDatabaseHotel, Context context);
 
-        void deleteFavoriteDataRestaurant(FavoriteData favoriteData, FavoriteDatabase favoriteDatabase);
+        void deleteFavoriteDataHotel(FavoriteDataHotel favoriteDataHotel, FavoriteDatabaseHotel favoriteDatabaseHotel);
     }
 }

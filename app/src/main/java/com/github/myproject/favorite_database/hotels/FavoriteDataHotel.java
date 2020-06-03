@@ -1,4 +1,4 @@
-package com.github.myproject.favorite_database.restaurant;
+package com.github.myproject.favorite_database.hotels;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 
 import com.google.firebase.database.annotations.NotNull;
 
-@Entity(tableName = "favorite_database")
-public class FavoriteDataRestaurant {
+@Entity(tableName = "favorite_database_hotel")
+public class FavoriteDataHotel {
     @NotNull
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
@@ -23,10 +23,10 @@ public class FavoriteDataRestaurant {
     private String vicinity;
 
     @ColumnInfo(name = "rating")
-    private double  rating;
+    private double rating;
 
     @ColumnInfo(name = "image")
-    private int  image;
+    private String image;
 
     public String getIdentity() {
         return identity;
@@ -68,11 +68,11 @@ public class FavoriteDataRestaurant {
         this.rating = rating;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }

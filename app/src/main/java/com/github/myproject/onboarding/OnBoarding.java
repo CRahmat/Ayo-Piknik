@@ -14,9 +14,9 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.github.myproject.Login;
 import com.github.myproject.R;
-import com.github.myproject.view.activity.MainActivity;
+import com.github.myproject.view.activity.activity.Login;
+import com.github.myproject.view.activity.activity.MainActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.scwang.wave.MultiWaveHeader;
 
@@ -70,9 +70,9 @@ public class OnBoarding extends AppCompatActivity {
         }
         //Add Data to OnBoarding Items
         final List<OnBoardingItem> onBoardingItems = new ArrayList<>();
-        onBoardingItems.add(new OnBoardingItem("Easy To Find Hotel", "Aplikasi ini memudahkan user dalam mencari sebuah penginapan ataupun hotel", R.drawable.on_boarding_image_1, R.drawable.on_boarding_background_1));
-        onBoardingItems.add(new OnBoardingItem("Get Best Your Rute", "Rute terbaik untuk menuju ke tempat wisata pilihan Anda telah disediakan dalam aplikasi ini", R.drawable.on_boarding_image_2, R.drawable.on_boarding_background_2));
-        onBoardingItems.add(new OnBoardingItem("Enjoy Your Traveler", "Selamat menikmati liburanmu", R.drawable.on_boarding_image_3, R.drawable.on_boarding_background_3));
+        onBoardingItems.add(new OnBoardingItem("Temukan Wisata Favorit Anda", "Ayo pilih beberapa tempat wisata favorit kamu", R.drawable.on_boarding_image_1, R.drawable.on_boarding_background_1));
+        onBoardingItems.add(new OnBoardingItem("Tentukan Penginapan Anda", "Temukan penginapan yang cocok untuk Anda", R.drawable.on_boarding_image_2, R.drawable.on_boarding_background_2));
+        onBoardingItems.add(new OnBoardingItem("Nikmati Liburanmu", "Selamat menikmati liburanmu, semoga harimu menyenangkan", R.drawable.on_boarding_image_3, R.drawable.on_boarding_background_3));
         //View Pager Setup
         onBoardingAdapter = new OnBoardingAdapter(this, onBoardingItems);
         onBoardingViewPager.setAdapter(onBoardingAdapter);
@@ -142,6 +142,16 @@ public class OnBoarding extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+            }
+        });
+
+        onBoardingSkip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginActivity = new Intent(getApplicationContext(), Login.class);
+                startActivity(loginActivity);
+                savePrefData();
+                finish();
             }
         });
 

@@ -1,23 +1,22 @@
-package com.github.myproject.favorite_database;
+package com.github.myproject.favorite_database.destination;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import java.util.List;
 
 @Dao
 
-public interface FavoriteDAO {
+public interface FavoriteDAODestination {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Long insertRepository(FavoriteData favoriteData);
+    Long insertRepository(FavoriteDataDestination favoriteDataDestination);
 
-    @Query("SELECT * FROM favorite_database")
-    List<FavoriteData> getFavorite();
+    @Query("SELECT * FROM favorite_database_destination")
+    List<FavoriteDataDestination> getFavorite();
 
     @Delete
-    void deleteRepositoryData(FavoriteData favoriteData);
+    void deleteRepositoryData(FavoriteDataDestination favoriteDataDestination);
 }

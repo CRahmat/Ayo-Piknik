@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimary">#0CCD13</color>
     <color name="colorPrimaryDark">#BABABA</color>
     <color name="colorAccent">#656565</color>
 
     <!-- warna  button -->
     <color name="gradient_start_color">#584CFF</color>
     <color name="gradient_end_color">#18a3fe</color>
+    <color name="gradient">@color/custom_loading</color>
 
     <!-- warna  tab dan screen text -->
     <color name="tab_indicator_gray">#c0c0c0</color>

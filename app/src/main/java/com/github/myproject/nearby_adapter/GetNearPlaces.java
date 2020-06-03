@@ -1,4 +1,4 @@
-package com.github.myproject.nearby;
+package com.github.myproject.nearby_adapter;
 
 import android.os.AsyncTask;
 

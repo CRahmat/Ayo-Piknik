@@ -1,101 +1,108 @@
-package com.github.myproject.favorite_database.restaurant;
+package com.github.myproject.favorite_database.hotels;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.github.myproject.favorite_database.FavoriteContract;
-import com.github.myproject.favorite_database.FavoriteDAO;
-import com.github.myproject.favorite_database.FavoriteData;
-import com.github.myproject.favorite_database.FavoriteDatabase;
+import com.github.myproject.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteOperationRestaurant implements FavoriteContract.presenter {
-    private FavoriteContract.view viewContract;
-    FavoriteDAO favoriteDAO;
-    List<FavoriteData> favoriteData = new ArrayList<>();
+public class FavoriteOperationHotel implements FavoriteContractHotel.presenter {
+    FavoriteDAOHotel favoriteDAOHotel;
+    List<FavoriteDataHotel> favoriteDataHotelList = new ArrayList<>();
+    private FavoriteContractHotel.view viewContract;
     private Context context;
-    public FavoriteOperationRestaurant(FavoriteContract.view viewContract) {
+
+    public FavoriteOperationHotel(FavoriteContractHotel.view viewContract) {
         this.viewContract = viewContract;
     }
-    public FavoriteOperationRestaurant(Context context) {
+
+    public FavoriteOperationHotel(Context context) {
         this.context = context;
     }
 
-    public FavoriteOperationRestaurant() {
-
-    }
-
-    class InsertData extends AsyncTask<Void, Void, Long>{
-        private FavoriteDatabase favoriteDatabase;
-        private FavoriteData favoriteData;
-
-        public InsertData(FavoriteDatabase favoriteDatabase, FavoriteData favoriteData) {
-            this.favoriteDatabase = favoriteDatabase;
-            this.favoriteData = favoriteData;
-        }
-
-        @Override
-        protected Long doInBackground(Void... voids) {
-            return favoriteDatabase.favoriteDAO().insertRepository(favoriteData);
-        }
-
-        @Override
-        protected void onPostExecute(Long aLong) {
-            super.onPostExecute(aLong);
-            Toast.makeText(context, "Berhasil Menambahkan Ke Favorite", Toast.LENGTH_SHORT).show();
-        }
+    public FavoriteOperationHotel() {
 
     }
 
     @Override
-    public void insertFavoriteData(String identity, String name, String vicinity, Double rating, final FavoriteDatabase favoriteDatabase) {
-        if(favoriteData.size()==0){
-            final FavoriteData favoriteData = new FavoriteData();
-            favoriteData.setName(name);
-            favoriteData.setVicinity(vicinity);
-            favoriteData.setRating(rating);
-            favoriteData.setIdentity(identity);
-            new InsertData(favoriteDatabase, favoriteData).execute();
-        }else{
-            for(int i = 0; i < favoriteData.size() ; i++){
-             if(favoriteData.get(i).getName() == name){
-                 viewContract.dataAlready();
-             }else {
-                 final FavoriteData favoriteData = new FavoriteData();
-                 favoriteData.setName(name);
-                 favoriteData.setVicinity(vicinity);
-                 favoriteData.setRating(rating);
-                 favoriteData.setIdentity(identity);
-                 new InsertData(favoriteDatabase, favoriteData).execute();
-             }
+    public void insertFavoriteDataHotel(String identity, String name, String vicinity, Double rating, String image, final FavoriteDatabaseHotel favoriteDatabaseHotel) {
+        if (favoriteDataHotelList.size() == 0) {
+            final FavoriteDataHotel favoriteDataHotel = new FavoriteDataHotel();
+            favoriteDataHotel.setName(name);
+            favoriteDataHotel.setVicinity(vicinity);
+            favoriteDataHotel.setRating(rating);
+            favoriteDataHotel.setIdentity(identity);
+            favoriteDataHotel.setImage(image);
+            new InsertData(favoriteDatabaseHotel, favoriteDataHotel).execute();
+        } else {
+            for (int i = 0; i < favoriteDataHotelList.size(); i++) {
+                if (favoriteDataHotelList.get(i).getName() == name) {
+                    viewContract.dataAlready();
+                } else {
+                    final FavoriteDataHotel favoriteDataHotel = new FavoriteDataHotel();
+                    favoriteDataHotel.setName(name);
+                    favoriteDataHotel.setVicinity(vicinity);
+                    favoriteDataHotel.setRating(rating);
+                    favoriteDataHotel.setIdentity(identity);
+                    favoriteDataHotel.setImage(image);
+                    new InsertData(favoriteDatabaseHotel, favoriteDataHotel).execute();
+                }
             }
         }
     }
 
     @Override
-    public void readFavoriteData(FavoriteDatabase favoriteDatabase, Context context) {
-        favoriteDatabase = FavoriteDatabase.database(context);
-        favoriteDAO = favoriteDatabase.favoriteDAO();
-        favoriteData = favoriteDatabase.favoriteDAO().getFavorite();
-        viewContract.getData(favoriteData);
+    public void readFavoriteDataHotel(FavoriteDatabaseHotel favoriteDatabaseHotel, Context context) {
+        favoriteDatabaseHotel = FavoriteDatabaseHotel.database(context);
+        favoriteDAOHotel = favoriteDatabaseHotel.favoriteDAOHotels();
+        favoriteDataHotelList = favoriteDatabaseHotel.favoriteDAOHotels().getFavorite();
+        viewContract.getDataHotel(favoriteDataHotelList);
     }
 
-    class DeleteRepositoryData extends AsyncTask<Void, Void, Void>{
-        private FavoriteDatabase favoriteDatabase;
-        private FavoriteData favoriteData;
+    @Override
+    public void deleteFavoriteDataHotel(final FavoriteDataHotel favoriteDataHotel,
+                                        final FavoriteDatabaseHotel favoriteDatabaseHotel) {
+        new DeleteRepositoryData(favoriteDatabaseHotel, favoriteDataHotel).execute();
+    }
 
-        public DeleteRepositoryData(FavoriteDatabase favoriteDatabase, FavoriteData favoriteData) {
-            this.favoriteDatabase = favoriteDatabase;
-            this.favoriteData = favoriteData;
+    class InsertData extends AsyncTask<Void, Void, Long> {
+        private FavoriteDatabaseHotel favoriteDatabaseHotel;
+        private FavoriteDataHotel favoriteDataHotel;
+
+        public InsertData(FavoriteDatabaseHotel favoriteDatabaseHotel, FavoriteDataHotel favoriteDataHotel) {
+            this.favoriteDatabaseHotel = favoriteDatabaseHotel;
+            this.favoriteDataHotel = favoriteDataHotel;
+        }
+
+        @Override
+        protected Long doInBackground(Void... voids) {
+            return favoriteDatabaseHotel.favoriteDAOHotels().insertRepository(favoriteDataHotel);
+        }
+
+        @Override
+        protected void onPostExecute(Long aLong) {
+            super.onPostExecute(aLong);
+            Toast.makeText(context, R.string.success_add_favorite, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    class DeleteRepositoryData extends AsyncTask<Void, Void, Void> {
+        private FavoriteDatabaseHotel favoriteDatabaseHotel;
+        private FavoriteDataHotel favoriteDataHotel;
+
+        public DeleteRepositoryData(FavoriteDatabaseHotel favoriteDatabaseHotel, FavoriteDataHotel favoriteDataHotel) {
+            this.favoriteDatabaseHotel = favoriteDatabaseHotel;
+            this.favoriteDataHotel = favoriteDataHotel;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            favoriteDatabase.favoriteDAO().deleteRepositoryData(favoriteData);
-            return  null;
+            favoriteDatabaseHotel.favoriteDAOHotels().deleteRepositoryData(favoriteDataHotel);
+            return null;
         }
 
         @Override
@@ -104,12 +111,6 @@ public class FavoriteOperationRestaurant implements FavoriteContract.presenter {
             viewContract.successDelete();
         }
 
-    }
-
-    @Override
-    public void deleteFavoriteData(final FavoriteData favoriteData,
-                           final FavoriteDatabase favoriteDatabase) {
-        new DeleteRepositoryData(favoriteDatabase, favoriteData).execute();
     }
 
 }

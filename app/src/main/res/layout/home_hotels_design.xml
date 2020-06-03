@@ -50,6 +50,26 @@
                         android:textColor="#FFFFFF"
                         android:textSize="14dp" />
 
+                    <TextView
+                        android:id="@+id/home_hotel_address"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:textColor="#FFFFFF"
+                        android:textSize="0dp" />
+
+                    <TextView
+                        android:id="@+id/home_open_status"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/gothic_bold"
+                        android:textColor="#FFFFFF"
+                        android:textSize="0dp" />
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -78,11 +98,29 @@
                             android:textColor="#FFFFFF"
                             android:textSize="10dp"
                             android:textStyle="normal" />
+
+                        <TextView
+                            android:id="@+id/home_place_photo_reference"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:fontFamily="@font/gothic"
+                            android:textColor="#FFFFFF"
+                            android:textSize="0dp"
+                            android:visibility="invisible" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
-
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/hotels_fav_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_margin="10dp"
+            android:background="@drawable/profile_share_background"
+            android:padding="5dp"
+            android:src="@drawable/ic_favorite_border_black" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

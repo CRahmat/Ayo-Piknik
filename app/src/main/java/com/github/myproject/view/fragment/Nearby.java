@@ -1,4 +1,4 @@
-package com.github.myproject;
+package com.github.myproject.view.fragment;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -12,8 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +27,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.github.myproject.R;
-import com.github.myproject.nearby.GetNearPlaces;
+import com.github.myproject.nearby_adapter.GetNearPlaces;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -35,13 +38,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.List;
@@ -54,8 +54,7 @@ public class Nearby extends Fragment implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener
-{
+        LocationListener {
     private static final int Request_User_Location_Code = 99;
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
@@ -69,6 +68,9 @@ public class Nearby extends Fragment implements
     private TextView hotelNearby;
     private TextView restaurantNearby;
     private MapView mapView;
+    private ImageView showCategories;
+    private LinearLayout categoriesLayout;
+    private boolean showCategoriesBoolean = false;
 
     public Nearby() {
         // Required empty public constructor
@@ -90,18 +92,36 @@ public class Nearby extends Fragment implements
             checkUserLocationPermission();
         }
 
-         //Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        //Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapView = view.findViewById(R.id.map);
         searchAddress = view.findViewById(R.id.search_address);
         vacationNearby = view.findViewById(R.id.vacation_nearby);
         hotelNearby = view.findViewById(R.id.hotel_nearby);
         restaurantNearby = view.findViewById(R.id.restaurant_nearby);
+        showCategories = view.findViewById(R.id.nearby_categories_show);
+        categoriesLayout = view.findViewById(R.id.nearby_layout_categories);
         mapView.onCreate(null);
         mapView.onResume();
         mapView.getMapAsync(this);
-        final String tourist_attraction = "tourist_attraction", lodging = "lodging", restaurant = "restaurant";
+        final String tourist_attraction = "tourist_attraction", lodging = "lodging", restaurant = "restaurant", atm = "atm";
         final Object transferData[] = new Object[2];
         final GetNearPlaces getNearbyPlaces = new GetNearPlaces();
+
+        showCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showCategoriesBoolean == false) {
+                    categoriesLayout.setVisibility(View.VISIBLE);
+                    categoriesLayout.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_scale_animation));
+                    showCategories.setImageResource(R.drawable.ic_chevron_up);
+                    showCategoriesBoolean = true;
+                } else {
+                    categoriesLayout.setVisibility(View.GONE);
+                    showCategories.setImageResource(R.drawable.ic_chevron_buttom);
+                    showCategoriesBoolean = false;
+                }
+            }
+        });
         searchAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,55 +150,83 @@ public class Nearby extends Fragment implements
                                 mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
                             }
                         } else {
-                            Toast.makeText(getContext(), "Lokasi Tidak Ditemukan...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), R.string.not_found_nearby, Toast.LENGTH_SHORT).show();
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getContext(), "Tulis Lokasi yang dicari ...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.write_search_nearby, Toast.LENGTH_SHORT).show();
                 }
-                vacationNearby.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMap.clear();
-                        String url = getUrl(latitide, longitude, tourist_attraction);
-                        transferData[0] = mMap;
-                        transferData[1] = url;
+            }
+        });
+        vacationNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                String url = getUrl(latitide, longitude, tourist_attraction);
+                transferData[0] = mMap;
+                transferData[1] = url;
+                try {
+                    Toast.makeText(getContext(), R.string.search_destination_nearby, Toast.LENGTH_SHORT).show();
+                    getNearbyPlaces.execute(transferData);
+                    Toast.makeText(getContext(), R.string.result_destination_nearby, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        vacationNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                String url = getUrl(latitide, longitude, atm);
+                transferData[0] = mMap;
+                transferData[1] = url;
+                try {
 
-                        getNearbyPlaces.execute(transferData);
-                        Toast.makeText(getContext(), "Mencari Wisata Terdekat...", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), "Menampilkan Wisata Terdekat...", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    Toast.makeText(getContext(), R.string.search_atm_nearby, Toast.LENGTH_SHORT).show();
+                    getNearbyPlaces.execute(transferData);
+                    Toast.makeText(getContext(), R.string.result_atm_nearby, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
-                hotelNearby.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMap.clear();
-                        String url = getUrl(latitide, longitude, lodging);
-                        transferData[0] = mMap;
-                        transferData[1] = url;
+        hotelNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                String url = getUrl(latitide, longitude, lodging);
+                transferData[0] = mMap;
+                transferData[1] = url;
+                try {
 
-                        getNearbyPlaces.execute(transferData);
-                        Toast.makeText(getContext(), "Mencari Hotel Terdekat...", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), "Menampilkan Hotel Terdekat...", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    Toast.makeText(getContext(), R.string.search_hotel_nearby, Toast.LENGTH_SHORT).show();
+                    getNearbyPlaces.execute(transferData);
+                    Toast.makeText(getContext(), R.string.result_hotel_nearby, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
-                restaurantNearby.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mMap.clear();
-                        String url = getUrl(latitide, longitude, restaurant);
-                        transferData[0] = mMap;
-                        transferData[1] = url;
+        restaurantNearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mMap.clear();
+                String url = getUrl(latitide, longitude, restaurant);
+                transferData[0] = mMap;
+                transferData[1] = url;
+                try {
 
-                        getNearbyPlaces.execute(transferData);
-                        Toast.makeText(getContext(), "Mencari Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getContext(), "Menampilkan Restaurant Terdekat...", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    Toast.makeText(getContext(), R.string.search_restaurant_nearby, Toast.LENGTH_SHORT).show();
+                    getNearbyPlaces.execute(transferData);
+                    Toast.makeText(getContext(), R.string.result_restaurant_nearby, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), R.string.please_wait, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

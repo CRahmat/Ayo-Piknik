@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Project</string>
+
+    <string name="skip_btn">Skip</string>
+    <string name="next_btn">Next</string>
+    <string name="get_started_btn">Lets Get Started</string>
+    <string name="get_started">Get Started</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_maps">Map</string>
+
+    <string name="facebook_app_id">684661492320795</string>
+    <string name="fb_login_protocol_scheme">fb684661492320795</string>
+    <string name="search_hint">Search...</string>
+    <string name="login_title">Join Us,\nLogin to Ayo Piknik</string>
+    <string name="login_title_2">Log In to Continue</string>
+    <string name="username_hint">E-mail/</string>
+    <string name="hint_password">Password</string>
+    <string name="login_to_sign_up">Dont have an account?,</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="log_in">Log In</string>
+    <string name="registration_title">Registration your account to join Ayo Piknik</string>
+    <string name="registration_title_2">Register your account</string>
+    <string name="have_account">Already have an account?,</string>
+    <string name="not_found">NOT FOUND</string>
+    <string name="welcome">Hello, Welcome</string>
+    <string name="welcome_details">Ayo Piknik Always Faithfully Accompany Your Trip</string>
+    <string name="attraction_home">Nearby Destination</string>
+    <string name="view_all">View All</string>
+    <string name="attraction_home_detail">Find your favorite destination now</string>
+    <string name="hotel">Hotel</string>
+    <string name="hotels_home_details">There are recomendation hotels for you</string>
+    <string name="restaurant">Restaurant</string>
+    <string name="restaurant_home_details">Find your favorite restaurant and favoritw food now</string>
+    <string name="nearby_search_hint">Find Your Favorite Place....</string>
+    <string name="attraction">Attraction</string>
+    <string name="profile_name">Profile Name</string>
+    <string name="log_out_all_caps">LOG IN</string>
+    <string name="details">Details</string>
+    <string name="info">Info</string>
+    <string name="alamat">Address</string>
+    <string name="nomor_handphone">Handphone Number</string>
+    <string name="e_mail">E-mail</string>
+    <string name="setting">Setting</string>
+    <string name="language">Language</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="ayo_piknik">Ayo Piknik Contact</string>
+    <string name="name">Name</string>
+    <string name="destination">Destination</string>
+    <string name="favorite_place_title">FAVORITE PLACE</string>
+    <string name="mosque">Mosque</string>
+    <string name="church">Church</string>
+    <string name="others">Others</string>
+    <string name="supermarket">Supermarket</string>
+    <string name="hospital">Hospital</string>
+    <string name="atm">ATM</string>
+    <string name="bank">Bank</string>
+    <string name="vihara">Vihara</string>
+    <string name="stasiun">Train Station</string>
+    <string name="bandara">Airport</string>
+    <string name="search">Search...</string>
+    <string name="search_destination_nearby">Look For the Nearest Destination...</string>
+    <string name="result_destination_nearby">Show For the Nearest Destination...</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="not_found_nearby">Location Not Found...</string>
+    <string name="write_search_nearby">Write the Location You Are Looking For ...</string>
+    <string name="search_atm_nearby">Look for the nearest ATM...</string>
+    <string name="result_atm_nearby">Show For the Nearest ATM...</string>
+    <string name="search_hotel_nearby">Look for the nearest Hotel...</string>
+    <string name="result_hotel_nearby">Show For the Nearest Hotel...</string>
+    <string name="search_restaurant_nearby">Look for the nearest Restaurant...</string>
+    <string name="result_restaurant_nearby">Show For the Nearest Restaurant...</string>
+    <string name="success_add_favorite">Success to Add on Favorite</string>
+    <string name="success_delete_fav">Success Delete the Data</string>
+    <string name="delete_data_conf">Delete Data</string>
+    <string name="delete_conf_2">Are you sure to delete this data?</string>
+    <string name="already_exist">Data Already Exist On Favorite</string>
+    <string name="failed_get_data">Failed to Get Data</string>
+    <string name="try_again">Please, login now and try again</string>
+    <string name="email_valid">Please, Input Valid Email</string>
+    <string name="min_password">Min 8 characters</string>
+    <string name="login_success">Login Successfully</string>
+    <string name="login_failed">Login Failed, Please Try Again</string>
+    <string name="success_facebook">Sign In with Facebook Successfully</string>
+    <string name="sign_in_google">Sign In with Google Successfully</string>
+    <string name="conf_exit">Are you sure you want to exit?</string>
+    <string name="name_signup">Name must be filled in</string>
+    <string name="sign_up_failed">Sign Up Failed, Please Try Again</string>
+    <string name="email_already">The Email Address is Already Use by Another Account</string>
+    <string name="input_email">Input Email</string>
+    <string name="username_login">"Username:"</string>
+    <string name="sign_in_failed">Sign In Failed, Please Tyr Again</string>
+
+</resources>

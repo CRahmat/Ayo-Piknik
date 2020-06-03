@@ -1,110 +1,115 @@
-package com.github.myproject.favorite_database;
+package com.github.myproject.favorite_database.destination;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import com.github.myproject.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavoriteOperation implements FavoriteContract.presenter {
-    private FavoriteContract.view viewContract;
-    FavoriteDAO favoriteDAO;
-    List<FavoriteData> favoriteData = new ArrayList<>();
+public class FavoriteOperationDestination implements FavoriteContractDestination.presenter {
+    FavoriteDAODestination favoriteDAODestination;
+    List<FavoriteDataDestination> favoriteDatumDestinations = new ArrayList<>();
+    private FavoriteContractDestination.view viewContract;
     private Context context;
-    public FavoriteOperation(FavoriteContract.view viewContract) {
+
+    public FavoriteOperationDestination(FavoriteContractDestination.view viewContract) {
         this.viewContract = viewContract;
     }
-    public FavoriteOperation(Context context) {
+
+    public FavoriteOperationDestination(Context context) {
         this.context = context;
     }
 
-    public FavoriteOperation() {
-
-    }
-
-    class InsertData extends AsyncTask<Void, Void, Long>{
-        private FavoriteDatabase favoriteDatabase;
-        private FavoriteData favoriteData;
-
-        public InsertData(FavoriteDatabase favoriteDatabase, FavoriteData favoriteData) {
-            this.favoriteDatabase = favoriteDatabase;
-            this.favoriteData = favoriteData;
-        }
-
-        @Override
-        protected Long doInBackground(Void... voids) {
-            return favoriteDatabase.favoriteDAO().insertRepository(favoriteData);
-        }
-
-        @Override
-        protected void onPostExecute(Long aLong) {
-            super.onPostExecute(aLong);
-            Toast.makeText(context, "Berhasil Menambahkan Ke Favorite", Toast.LENGTH_SHORT).show();
-        }
+    public FavoriteOperationDestination() {
 
     }
 
     @Override
-    public void insertFavoriteData(String identity, String name, String vicinity, Double rating, final FavoriteDatabase favoriteDatabase) {
-        if(favoriteData.size()==0){
-            final FavoriteData favoriteData = new FavoriteData();
-            favoriteData.setName(name);
-            favoriteData.setVicinity(vicinity);
-            favoriteData.setRating(rating);
-            favoriteData.setIdentity(identity);
-            new InsertData(favoriteDatabase, favoriteData).execute();
-        }else{
-            for(int i = 0; i < favoriteData.size() ; i++){
-             if(favoriteData.get(i).getName() == name){
-                 viewContract.dataAlready();
-             }else {
-                 final FavoriteData favoriteData = new FavoriteData();
-                 favoriteData.setName(name);
-                 favoriteData.setVicinity(vicinity);
-                 favoriteData.setRating(rating);
-                 favoriteData.setIdentity(identity);
-                 new InsertData(favoriteDatabase, favoriteData).execute();
-             }
+    public void insertFavoriteData(String identity, String name, String vicinity, Double rating, String image, final FavoriteDatabaseDestination favoriteDatabaseDestination) {
+        if (favoriteDatumDestinations.size() == 0) {
+            final FavoriteDataDestination favoriteDataDestination = new FavoriteDataDestination();
+            favoriteDataDestination.setName(name);
+            favoriteDataDestination.setVicinity(vicinity);
+            favoriteDataDestination.setRating(rating);
+            favoriteDataDestination.setIdentity(identity);
+            favoriteDataDestination.setImage(image);
+            new InsertData(favoriteDatabaseDestination, favoriteDataDestination).execute();
+        } else {
+            for (int i = 0; i < favoriteDatumDestinations.size(); i++) {
+                if (favoriteDatumDestinations.get(i).getName() == name) {
+                    viewContract.dataAlready();
+                } else {
+                    final FavoriteDataDestination favoriteDataDestination = new FavoriteDataDestination();
+                    favoriteDataDestination.setName(name);
+                    favoriteDataDestination.setVicinity(vicinity);
+                    favoriteDataDestination.setRating(rating);
+                    favoriteDataDestination.setIdentity(identity);
+                    favoriteDataDestination.setImage(image);
+                    new InsertData(favoriteDatabaseDestination, favoriteDataDestination).execute();
+                }
             }
         }
     }
 
     @Override
-    public void readFavoriteData(FavoriteDatabase favoriteDatabase, Context context) {
-        favoriteDatabase = FavoriteDatabase.database(context);
-        favoriteDAO = favoriteDatabase.favoriteDAO();
-        favoriteData = favoriteDatabase.favoriteDAO().getFavorite();
-        viewContract.getData(favoriteData);
+    public void readFavoriteData(FavoriteDatabaseDestination favoriteDatabaseDestination, Context context) {
+        favoriteDatabaseDestination = FavoriteDatabaseDestination.database(context);
+        favoriteDAODestination = favoriteDatabaseDestination.favoriteDAO();
+        favoriteDatumDestinations = favoriteDatabaseDestination.favoriteDAO().getFavorite();
+        viewContract.getData(favoriteDatumDestinations);
     }
 
-    class DeleteRepositoryData extends AsyncTask<Void, Void, Void>{
-        private FavoriteDatabase favoriteDatabase;
-        private FavoriteData favoriteData;
+    @Override
+    public void deleteFavoriteData(final FavoriteDataDestination favoriteDataDestination,
+                                   final FavoriteDatabaseDestination favoriteDatabaseDestination) {
+        new DeleteRepositoryData(favoriteDatabaseDestination, favoriteDataDestination).execute();
+    }
 
-        public DeleteRepositoryData(FavoriteDatabase favoriteDatabase, FavoriteData favoriteData) {
-            this.favoriteDatabase = favoriteDatabase;
-            this.favoriteData = favoriteData;
+    class InsertData extends AsyncTask<Void, Void, Long> {
+        private FavoriteDatabaseDestination favoriteDatabaseDestination;
+        private FavoriteDataDestination favoriteDataDestination;
+
+        public InsertData(FavoriteDatabaseDestination favoriteDatabaseDestination, FavoriteDataDestination favoriteDataDestination) {
+            this.favoriteDatabaseDestination = favoriteDatabaseDestination;
+            this.favoriteDataDestination = favoriteDataDestination;
+        }
+
+        @Override
+        protected Long doInBackground(Void... voids) {
+            return favoriteDatabaseDestination.favoriteDAO().insertRepository(favoriteDataDestination);
+        }
+
+        @Override
+        protected void onPostExecute(Long aLong) {
+            super.onPostExecute(aLong);
+            Toast.makeText(context, R.string.success_add_favorite, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    class DeleteRepositoryData extends AsyncTask<Void, Void, Void> {
+        private FavoriteDatabaseDestination favoriteDatabaseDestination;
+        private FavoriteDataDestination favoriteDataDestination;
+
+        public DeleteRepositoryData(FavoriteDatabaseDestination favoriteDatabaseDestination, FavoriteDataDestination favoriteDataDestination) {
+            this.favoriteDatabaseDestination = favoriteDatabaseDestination;
+            this.favoriteDataDestination = favoriteDataDestination;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            favoriteDatabase.favoriteDAO().deleteRepositoryData(favoriteData);
-            return  null;
+            favoriteDatabaseDestination.favoriteDAO().deleteRepositoryData(favoriteDataDestination);
+            return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            viewContract.successDelete();
         }
 
-    }
-
-    @Override
-    public void deleteFavoriteData(final FavoriteData favoriteData,
-                           final FavoriteDatabase favoriteDatabase) {
-        new DeleteRepositoryData(favoriteDatabase, favoriteData).execute();
     }
 
 }
