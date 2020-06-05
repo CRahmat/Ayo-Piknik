@@ -24,6 +24,7 @@ import com.github.myproject.favorite_database.hotels.FavoriteOperationHotel;
 import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
 import com.github.myproject.view.fragment.Profile;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

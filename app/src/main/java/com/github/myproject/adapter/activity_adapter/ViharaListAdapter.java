@@ -16,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
+import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViharaListAdapter extends RecyclerView.Adapter<ViharaListAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<PlacesResultsItem> modelVihara = new ArrayList<>();
     private ArrayList<PlacesResultsItem> modelViharaFiltered = new ArrayList<>();
+    private List<PhotosItem> viharaPhotoItems = new ArrayList<>();
+
 
     public ViharaListAdapter(Context context) {
         this.context = context;
@@ -52,7 +58,10 @@ public class ViharaListAdapter extends RecyclerView.Adapter<ViharaListAdapter.Vi
     public void onBindViewHolder(@NonNull ViharaListAdapter.ViewHolder holder, final int position) {
         holder.tvHotelName.setText(modelViharaFiltered.get(position).getName());
         holder.tvHotelAddress.setText(modelViharaFiltered.get(position).getVicinity());
-
+        viharaPhotoItems = modelViharaFiltered.get(position).getPhotos();
+        int maxWidth = viharaPhotoItems.get(0).getWidth();
+        String photoReference = viharaPhotoItems.get(0).getPhotoReference();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").centerCrop().placeholder(R.drawable.special_loading).into(holder.containerLeft);
         if (modelViharaFiltered.get(position).getOpeningHours().isOpenNow())
             holder.tvHotelOpenStatus.setText("Open");
         else holder.tvHotelOpenStatus.setText("Closed");

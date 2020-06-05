@@ -25,6 +25,7 @@ import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
 import com.github.myproject.view.activity.activity.DetailPlaceWebView;
 import com.github.myproject.view.fragment.Profile;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +87,7 @@ public class HomeTouristAttractionAdapter extends RecyclerView.Adapter<HomeTouri
             touristAttractionPhotosItem = modelTouristAttractionFiltered.get(position).getPhotos();
             int maxWidth = touristAttractionPhotosItem.get(0).getWidth();
             String photoReference = touristAttractionPhotosItem.get(0).getPhotoReference();
-            Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").centerCrop().into(holder.containerLeft);
-
+            Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").placeholder(R.drawable.special_loading).into(holder.containerLeft);
             holder.photosItems.setText(photoReference);
 
             if (modelTouristAttractionFiltered.get(position).getOpeningHours().isOpenNow())

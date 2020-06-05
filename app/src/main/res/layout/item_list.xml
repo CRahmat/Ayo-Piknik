@@ -21,7 +21,9 @@
                 android:id="@+id/item_list_left_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark" />
+                android:background="@color/colorPrimaryDark"
+                android:scaleType="centerCrop"
+                />
 
             <LinearLayout
                 android:id="@+id/item_list_right_container"

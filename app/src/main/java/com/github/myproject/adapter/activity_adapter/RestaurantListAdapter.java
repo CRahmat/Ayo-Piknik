@@ -16,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
+import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<PlacesResultsItem> modelRestaurant = new ArrayList<>();
     private ArrayList<PlacesResultsItem> modelRestaurantFiltered = new ArrayList<>();
+    private List<PhotosItem> restaurantPhotoItems = new ArrayList<>();
+
 
     public RestaurantListAdapter(Context context) {
         this.context = context;
@@ -52,7 +58,10 @@ public class RestaurantListAdapter extends RecyclerView.Adapter<RestaurantListAd
     public void onBindViewHolder(@NonNull RestaurantListAdapter.ViewHolder holder, final int position) {
         holder.tvRestaurantName.setText(modelRestaurantFiltered.get(position).getName());
         holder.tvRestaurantAddress.setText(modelRestaurantFiltered.get(position).getVicinity());
-
+        restaurantPhotoItems = modelRestaurantFiltered.get(position).getPhotos();
+        int maxWidth = restaurantPhotoItems.get(0).getWidth();
+        String photoReference = restaurantPhotoItems.get(0).getPhotoReference();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").placeholder(R.drawable.special_loading).into(holder.containerLeft);
         if (modelRestaurantFiltered.get(position).getOpeningHours().isOpenNow())
             holder.tvRestaurantOpenStatus.setText("Open");
         else holder.tvRestaurantOpenStatus.setText("Closed");

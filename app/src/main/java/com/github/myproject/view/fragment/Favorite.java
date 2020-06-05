@@ -203,12 +203,14 @@ public class Favorite extends Fragment implements FavoriteContractDestination.vi
                             if (favoriteDataRestaurantList.size() != 0) {
                                 notFound.setVisibility(View.GONE);
                                 layoutFavRestaurant.setVisibility(View.VISIBLE);
+                                recyclerViewRestaurant.setAnimation(null);
                                 favoriteOperationRestaurant.readFavoriteDataRestaurant(favoriteDatabaseRestaurant, getContext());
                             } else {
                                 layoutFavRestaurant.setVisibility(View.GONE);
                                 favoriteOperationRestaurant.readFavoriteDataRestaurant(favoriteDatabaseRestaurant, getContext());
                                 if (favoriteDatumDestinations.size() == 0 && favoriteDataHotelList.size() == 0 && favoriteDataRestaurantList.size() == 0) {
                                     notFound.setVisibility(View.VISIBLE);
+                                    recyclerViewRestaurant.setAnimation(null);
                                     layoutFavDestination.setVisibility(View.GONE);
                                     layoutFavHotel.setVisibility(View.GONE);
                                     layoutFavRestaurant.setVisibility(View.GONE);
@@ -258,12 +260,14 @@ public class Favorite extends Fragment implements FavoriteContractDestination.vi
                             if (favoriteDataHotelList.size() != 0) {
                                 notFound.setVisibility(View.GONE);
                                 layoutFavHotel.setVisibility(View.VISIBLE);
+                                recyclerViewHotel.setAnimation(null);
                                 favoriteOperationHotel.readFavoriteDataHotel(favoriteDatabaseHotel, getContext());
                             } else {
                                 layoutFavHotel.setVisibility(View.GONE);
                                 favoriteOperationHotel.readFavoriteDataHotel(favoriteDatabaseHotel, getContext());
                                 if (favoriteDatumDestinations.size() == 0 && favoriteDataHotelList.size() == 0 && favoriteDataRestaurantList.size() == 0) {
                                     notFound.setVisibility(View.VISIBLE);
+                                    recyclerViewHotel.setAnimation(null);
                                     layoutFavDestination.setVisibility(View.GONE);
                                     layoutFavHotel.setVisibility(View.GONE);
                                     layoutFavRestaurant.setVisibility(View.GONE);
@@ -312,12 +316,14 @@ public class Favorite extends Fragment implements FavoriteContractDestination.vi
                             if (favoriteDatumDestinations.size() != 0) {
                                 notFound.setVisibility(View.GONE);
                                 layoutFavDestination.setVisibility(View.VISIBLE);
+                                recyclerViewDestination.setAnimation(null);
                                 favoriteOperationDestination.readFavoriteData(favoriteDatabaseDestination, getContext());
                             } else {
                                 layoutFavDestination.setVisibility(View.GONE);
                                 favoriteOperationDestination.readFavoriteData(favoriteDatabaseDestination, getContext());
                                 if (favoriteDatumDestinations.size() == 0 && favoriteDataHotelList.size() == 0 && favoriteDataRestaurantList.size() == 0) {
                                     notFound.setVisibility(View.VISIBLE);
+                                    recyclerViewDestination.setAnimation(null);
                                     layoutFavDestination.setVisibility(View.GONE);
                                     layoutFavHotel.setVisibility(View.GONE);
                                     layoutFavRestaurant.setVisibility(View.GONE);

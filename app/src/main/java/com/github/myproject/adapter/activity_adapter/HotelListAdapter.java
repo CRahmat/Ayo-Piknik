@@ -16,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
+import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<PlacesResultsItem> modelHotel = new ArrayList<>();
     private ArrayList<PlacesResultsItem> modelHotelFiltered = new ArrayList<>();
+    private List<PhotosItem> hotelPhotosItem = new ArrayList<>();
+
 
     public HotelListAdapter(Context context) {
         this.context = context;
@@ -52,7 +58,10 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     public void onBindViewHolder(@NonNull HotelListAdapter.ViewHolder holder, final int position) {
         holder.tvHotelName.setText(modelHotelFiltered.get(position).getName());
         holder.tvHotelAddress.setText(modelHotelFiltered.get(position).getVicinity());
-
+        hotelPhotosItem = modelHotelFiltered.get(position).getPhotos();
+        int maxWidth = hotelPhotosItem.get(0).getWidth();
+        String photoReference = hotelPhotosItem.get(0).getPhotoReference();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").placeholder(R.drawable.special_loading).into(holder.containerLeft);
         if (modelHotelFiltered.get(position).getOpeningHours().isOpenNow())
             holder.tvHotelOpenStatus.setText("Open");
         else holder.tvHotelOpenStatus.setText("Closed");

@@ -182,7 +182,7 @@ public class Profile extends Fragment {
             }
 
         }
-        if (btn_sign_out.getText().toString().equals("LOG IN")) {
+        if (btn_sign_out.getText().toString().equals("LOG IN") && aBoolean == false) {
             btn_sign_out.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

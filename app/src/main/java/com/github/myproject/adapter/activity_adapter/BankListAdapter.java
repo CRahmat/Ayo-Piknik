@@ -16,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
+import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<PlacesResultsItem> modelBank = new ArrayList<>();
     private ArrayList<PlacesResultsItem> modelBankFiltered = new ArrayList<>();
+    private List<PhotosItem> bankPhotoItems = new ArrayList<>();
+
 
     public BankListAdapter(Context context) {
         this.context = context;
@@ -52,7 +58,10 @@ public class BankListAdapter extends RecyclerView.Adapter<BankListAdapter.ViewHo
     public void onBindViewHolder(@NonNull BankListAdapter.ViewHolder holder, final int position) {
         holder.tvHotelName.setText(modelBankFiltered.get(position).getName());
         holder.tvHotelAddress.setText(modelBankFiltered.get(position).getVicinity());
-
+        bankPhotoItems = modelBankFiltered.get(position).getPhotos();
+        int maxWidth = bankPhotoItems.get(0).getWidth();
+        String photoReference = bankPhotoItems.get(0).getPhotoReference();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").placeholder(R.drawable.special_loading).into(holder.containerLeft);
         if (modelBankFiltered.get(position).getOpeningHours().isOpenNow())
             holder.tvHotelOpenStatus.setText("Open");
         else holder.tvHotelOpenStatus.setText("Closed");

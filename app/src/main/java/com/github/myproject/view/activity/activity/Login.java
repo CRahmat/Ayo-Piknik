@@ -2,7 +2,11 @@ package com.github.myproject.view.activity.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -42,6 +46,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 public class Login extends AppCompatActivity {
@@ -141,7 +147,19 @@ public class Login extends AppCompatActivity {
         //Facebook
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo("com.github.myproject", PackageManager.GET_SIGNATURES);
+            for(Signature signature : packageInfo.signatures){
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
 
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         firebaseAuth = FirebaseAuth.getInstance();
         registration = findViewById(R.id.facebook_registration);
         registration.setOnClickListener(new View.OnClickListener() {
@@ -229,11 +247,10 @@ public class Login extends AppCompatActivity {
                         Intent intentMainActivity = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intentMainActivity);
                         updateUI(user);
-                        Toast.makeText(getApplicationContext(), R.string.username_login + user.getDisplayName(), Toast.LENGTH_SHORT).show();
                     } else {
                         Profile.aBoolean = false;
                         Log.d(TAG, "Sign In with Credential Failed");
-                        Toast.makeText(getApplicationContext(), R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.sign_in_failed + task.getException().toString(), Toast.LENGTH_SHORT).show();
                         updateUI(null);
                     }
                 }
@@ -286,7 +303,7 @@ public class Login extends AppCompatActivity {
                         finishAffinity();
                     } else {
                         Profile.aBoolean = false;
-                        Toast.makeText(getApplicationContext(), R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.sign_in_failed+ task.getException().toString(), Toast.LENGTH_SHORT).show();
                         updateUIGoogle(null);
                     }
                 }
@@ -304,6 +321,7 @@ public class Login extends AppCompatActivity {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
+            Toast.makeText(getApplicationContext(), R.string.username_login + user.getDisplayName(), Toast.LENGTH_SHORT).show();
         }
     }
 

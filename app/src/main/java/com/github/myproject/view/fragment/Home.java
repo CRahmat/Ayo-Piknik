@@ -138,7 +138,7 @@ public class Home extends Fragment {
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("HH");
         formattedDate = df.format(c.getTime());
-
+        //Instansiasi Obyek
         btn_hospital = view.findViewById(R.id.home_categories_hospital);
         bttn_airport = view.findViewById(R.id.home_categories_airport);
         bttn_atm = view.findViewById(R.id.home_categories_atm);
@@ -167,7 +167,7 @@ public class Home extends Fragment {
         progressBarDestinationDetails = view.findViewById(R.id.home_destination_progress_bar_details);
         progressBarRestaurantDetails = view.findViewById(R.id.home_restaurant_progress_bar_details);
         progressBarHotelsDetails = view.findViewById(R.id.home_hotels_progress_bar_details);
-
+        //Setting  Bahasa Ucapan
         if (restaurantLabel.getText().toString().equals("Tempat Makan")) {
             if (Integer.parseInt(formattedDate) >= 4 && Integer.parseInt(formattedDate) <= 11) {
                 welcomeText.setText("Hello, Selamat Pagi");
@@ -179,12 +179,12 @@ public class Home extends Fragment {
                 homeWelcomeImage.setImageResource(R.drawable.morning_view);
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
                 welcomeTextDetail.setTextColor(getResources().getColor(R.color.bgColor3));
-            } else if (Integer.parseInt(formattedDate) >= 2 && Integer.parseInt(formattedDate) <= 17) {
+            } else if (Integer.parseInt(formattedDate) >= 14 && Integer.parseInt(formattedDate) <= 18) {
                 welcomeText.setText("Hello, Selamat Sore");
                 homeWelcomeImage.setImageResource(R.drawable.afternoon_view);
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
                 welcomeTextDetail.setTextColor(getResources().getColor(R.color.bgColor3));
-            } else if (Integer.parseInt(formattedDate) >= 18 || Integer.parseInt(formattedDate) <= 3) {
+            } else if (Integer.parseInt(formattedDate) >= 19 || Integer.parseInt(formattedDate) <= 3) {
                 welcomeText.setText("Hello, Selamat Malam");
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
                 welcomeTextDetail.setTextColor(getResources().getColor(R.color.bgColor3));
@@ -196,12 +196,12 @@ public class Home extends Fragment {
                 homeWelcomeImage.setImageResource(R.drawable.morning_view);
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
                 welcomeTextDetail.setTextColor(getResources().getColor(R.color.bgColor3));
-            } else if (Integer.parseInt(formattedDate) >= 12 && Integer.parseInt(formattedDate) <= 2) {
+            } else if (Integer.parseInt(formattedDate) >= 12 && Integer.parseInt(formattedDate) <= 14) {
                 welcomeText.setText("Hello, Good Afternoon");
                 homeWelcomeImage.setImageResource(R.drawable.morning_view);
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
                 welcomeTextDetail.setTextColor(getResources().getColor(R.color.bgColor3));
-            } else if (Integer.parseInt(formattedDate) >= 2 && Integer.parseInt(formattedDate) <= 17) {
+            } else if (Integer.parseInt(formattedDate) >= 14 && Integer.parseInt(formattedDate) <= 17) {
                 welcomeText.setText("Hello, Good Afternoon");
                 homeWelcomeImage.setImageResource(R.drawable.afternoon_view);
                 welcomeText.setTextColor(getResources().getColor(R.color.bgColor3));
@@ -214,6 +214,7 @@ public class Home extends Fragment {
             }
         }
 
+        //Setting Destination
         recyclerTouristAttraction = view.findViewById(R.id.rv_content_tourist_attraction);
         LinearLayoutManager touristAttractionLayoutManager = new LinearLayoutManager(getContext());
         touristAttractionLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -225,6 +226,7 @@ public class Home extends Fragment {
         touristAttractionViewModel.setModelTouristAttractions();
         touristAttractionViewModel.getModelTouristAttractions().observe(this, getModelTouristAttraction);
 
+        //Setting Restaurant
         recyclerViewRestaurant = view.findViewById(R.id.rv_content_restaurant);
         LinearLayoutManager restaurantLayoutManager = new LinearLayoutManager(getContext());
         restaurantLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -236,6 +238,7 @@ public class Home extends Fragment {
         viewModelRestaurant.setModelRestaurants();
         viewModelRestaurant.getModelRestaurants().observe(this, getModelRestaurant);
 
+        //Setting Hotels
         recyclerViewHotels = view.findViewById(R.id.rv_content_hotels);
         LinearLayoutManager hotelsLayoutManager = new LinearLayoutManager(getContext());
         hotelsLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -351,28 +354,6 @@ public class Home extends Fragment {
 
             }
         });
-        showSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (searchShow == false) {
-                    searchShow = true;
-                    searchLayout.setVisibility(View.VISIBLE);
-                    searchLayout.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_scale_animation));
-                    logoLayout.setVisibility(View.INVISIBLE);
-                    showSearch.setMinProgress(0.0f);
-                    showSearch.setMaxProgress(0.5f);
-                    showSearch.playAnimation();
-                } else {
-                    searchShow = false;
-                    searchLayout.setVisibility(View.INVISIBLE);
-                    logoLayout.setVisibility(View.VISIBLE);
-                    logoLayout.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_scale_animation));
-                    showSearch.setMinProgress(0.5f);
-                    showSearch.setMaxProgress(1.0f);
-                    showSearch.playAnimation();
-                }
-            }
-        });
 
         showAllRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -397,6 +378,32 @@ public class Home extends Fragment {
                 Intent intent = new Intent(getActivity(), TourismAttractionListActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        //Menampilkan search pada home
+        showSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (searchShow == false) {
+                    searchShow = true;
+                    searchLayout.setVisibility(View.VISIBLE);
+                    searchLayout.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_scale_animation));
+                    logoLayout.setVisibility(View.INVISIBLE);
+                    //Setting Lottie Animation
+                    showSearch.setMinProgress(0.0f);
+                    showSearch.setMaxProgress(0.5f);
+                    showSearch.playAnimation();
+                } else {
+                    searchShow = false;
+                    searchLayout.setVisibility(View.INVISIBLE);
+                    logoLayout.setVisibility(View.VISIBLE);
+                    logoLayout.setAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.fade_scale_animation));
+                    //Setting Lottie Animation
+                    showSearch.setMinProgress(0.5f);
+                    showSearch.setMaxProgress(1.0f);
+                    showSearch.playAnimation();
+                }
             }
         });
 

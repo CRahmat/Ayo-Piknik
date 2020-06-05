@@ -16,16 +16,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.github.myproject.R;
+import com.github.myproject.model.PhotosItem;
 import com.github.myproject.model.PlacesResultsItem;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TourismAttractionAdapter extends RecyclerView.Adapter<TourismAttractionAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<PlacesResultsItem> modelTouristAttraction = new ArrayList<>();
     private ArrayList<PlacesResultsItem> modelTouristAttractionFiltered = new ArrayList<>();
+    private List<PhotosItem> destinationPhotoItems = new ArrayList<>();
+
 
     public TourismAttractionAdapter(Context context) {
         this.context = context;
@@ -52,7 +58,10 @@ public class TourismAttractionAdapter extends RecyclerView.Adapter<TourismAttrac
     public void onBindViewHolder(@NonNull final TourismAttractionAdapter.ViewHolder holder, final int position) {
         holder.tvTouristAttractionName.setText(modelTouristAttractionFiltered.get(position).getName());
         holder.tvTouristAttractionAddress.setText(modelTouristAttractionFiltered.get(position).getVicinity());
-
+        destinationPhotoItems = modelTouristAttractionFiltered.get(position).getPhotos();
+        int maxWidth = destinationPhotoItems.get(0).getWidth();
+        String photoReference = destinationPhotoItems.get(0).getPhotoReference();
+        Glide.with(context).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=" + maxWidth + "&photoreference=" + photoReference + "&key=AIzaSyADWlvOFdw2hxpdhhNFJVjwcs8vQ3zwU14").placeholder(R.drawable.special_loading).into(holder.containerLeft);
         if (modelTouristAttractionFiltered.get(position).getOpeningHours().isOpenNow())
             holder.tvTouristAttractionOpenStatus.setText("Open");
         else holder.tvTouristAttractionOpenStatus.setText("Closed");
